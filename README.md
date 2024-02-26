@@ -4,12 +4,12 @@ To perform testing of the DKI approach over one of the tasks avaliable (link pre
 
 
 INSTRUCTIONS:
-1 - For model evaluation over the "ogbn-proteins" or "ogbl-ppa" tasks' datasets, the GO and GO annotations sets need to be downloaded and put in the main folder "DKI-GNN" prior to running any script, their download links are http://release.geneontology.org/2020-06-01/ontology/index.html and http://release.geneontology.org/2020-06-01/annotations/goa , respectively
+## 1 - For model evaluation over the "ogbn-proteins" or "ogbl-ppa" tasks' datasets, the GO and GO annotations sets need to be downloaded and put in the main folder "DKI-GNN" prior to running any script, their download links are http://release.geneontology.org/2020-06-01/ontology/index.html and http://release.geneontology.org/2020-06-01/annotations/goa , respectively. 
 
 For the first time performing an evaluation over HURI dataset first run "huri_to_ogb_datatype.py" to load data and build pyg-readable link property prediction dataset similar to OGB's PPI dataset formats. Loading of OGB datasets "ogbl-ppa" and "ogbn-proteins" does not require this initial step.
 
 
-2 - Run the python script starting with "run_" followed by specific task name. See parameters for script.
+## 2 - Run the python script starting with "run_" followed by specific task name. See parameters for script.
 E.g. default embedding generation for rdf2vec KGE method and model evaluation for GCN-based link prediction over the HURI dataset can be done with 
 command "python3 run_link_prediction.py --type DL --model GCN --compute_embedding --embedding rdf2vec"
 
