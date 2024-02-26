@@ -15,7 +15,8 @@ They can be downloaded at http://release.geneontology.org/2020-06-01/ontology/in
 ### For first time performing evaluation over HURI dataset:
 First run "huri_to_ogb_datatype.py" to load data and build pyg-readable link property prediction dataset similar to OGB's PPI dataset formats. Loading of OGB datasets "ogbl-ppa" and "ogbn-proteins" does not require this initial step.
 
------------------
+
+
 
 ## 2nd Step
 ### Run the python script starting with "run_" followed by specific task name. See parameters for script.
