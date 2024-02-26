@@ -4,7 +4,8 @@ To perform testing of the DKI approach over one of the tasks avaliable (link pre
 
 
 INSTRUCTIONS:
-## 1 - For model evaluation over the "ogbn-proteins" or "ogbl-ppa" tasks' datasets, the GO and GO annotations sets need to be downloaded and put in the main folder "DKI-GNN" prior to running any script, their download links are http://release.geneontology.org/2020-06-01/ontology/index.html and http://release.geneontology.org/2020-06-01/annotations/goa , respectively. 
+## 1 - For model evaluation over the "ogbn-proteins" or "ogbl-ppa" tasks' datasets, the GO and GO annotations sets need to be downloaded and put in the main folder "DKI-GNN" prior to running any script. 
+They can be downloaded at http://release.geneontology.org/2020-06-01/ontology/index.html and http://release.geneontology.org/2020-06-01/annotations/goa , respectively. 
 
 For the first time performing an evaluation over HURI dataset first run "huri_to_ogb_datatype.py" to load data and build pyg-readable link property prediction dataset similar to OGB's PPI dataset formats. Loading of OGB datasets "ogbl-ppa" and "ogbn-proteins" does not require this initial step.
 
