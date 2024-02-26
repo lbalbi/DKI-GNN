@@ -16,7 +16,7 @@ def make_dataset(path, name_="ogbn-proteins"):
     split_edge = dataset.get_idx_split()
     del dataset
     data.x = data.x.to(torch.float)
-    print(data)
+
     return data, split_edge, data.x
 
 
@@ -44,8 +44,8 @@ def make_embeddings(embedder, annot_type="CC"):
         else: command_to_execute = ["python3", "Embeddings/run_RDF2VecEmbeddings.py"]
 
     subprocess.run(command_to_execute)
-
     print("{} embeddings done!".format(embedder)) # save embeddings in file
+
 
 import ast
 def get_embeddings(path_, annot_type="CC", embedder="", x_=None):
@@ -62,7 +62,7 @@ def get_embeddings(path_, annot_type="CC", embedder="", x_=None):
 
     from pathlib import Path
     if embedder != "" and Path(path_ + "/embedding_{}.pt".format(embedder)).exists() == False:
-        print(path_ + "/embedding_{}.pt".format(embedder))
+
         print("processing {} embedings into torch tensor format".format(embedder))
         with open('{}'.format(path_ + "/" + embedding_file), 'r') as f:
             mylist = ast.literal_eval(f.read())
@@ -88,12 +88,9 @@ def get_embeddings(path_, annot_type="CC", embedder="", x_=None):
         x = torch.load(path_ + "/embedding_{}.pt".format(embedder))
     elif embedder == "" and x_ != None:
         x = x_
-    try:    
-        print(x)
-        print(len(x))
-        print(len(x[0]))
-    except:pass
+
     return x.to("cuda")
+
 
 def run_neural(dl_model, embeddings = None, data_path="./dataset"):
     if dl_model == "GCN":
@@ -149,14 +146,12 @@ def main():
         print("randomizing features : ")
         x = torch.Tensor(np.random.rand(len(x),50))
         torch.save(x, args.data_path + "/embedding_random.pt")
-        print(x)
-        print(len(x), len(x[0]))
         x_ = get_embeddings(path_ = args.data_path, embedder = args.embedding, x_ = x)
+        
     elif args.randomize == True and Path(args.data_path + "/embedding_random.pt").exists() == True:
         x = torch.load(args.data_path + "/embedding_random.pt")
-        print(x)
-        print(len(x), len(x[0]))
         x_ = get_embeddings(path_ = args.data_path, embedder = args.embedding, x_ = x)
+        
     elif args.randomize == False and args.embedding != "": x_ = get_embeddings(path_ = args.data_path, embedder = args.embedding)
     torch.save(x_, "embedding_{}_{}.pt".format(args.embedding,args.model))
     if args.use_ppi == True and args.combined == True: run_neural(embeddings = "embedding_{}_{}.pt".format(args.embedding,args.model), dl_model = args.model, data_path=args.data_path, combined = True)
