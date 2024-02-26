@@ -2,7 +2,9 @@
 
 --------------------
 
-To perform testing of the DKI approach over one of the tasks avaliable (link prediction with the "ogbl-ppa" and "HuRI" benchmark datasets and node classification with "ogbn-proteins" dataset):
+The DKI approach has been tested over two popular prediction tasks:
+ - link prediction with "ogbl-ppa" and "HuRI" benchmark datasets;
+ - node classification with "ogbn-proteins" dataset;
 
 
 ## INSTRUCTIONS:
