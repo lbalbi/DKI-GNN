@@ -1,5 +1,7 @@
 # -- DKI Domain Knowledge Injected GNN --
 
+--------------------
+
 To perform testing of the DKI approach over one of the tasks avaliable (link prediction with the "ogbl-ppa" and "HuRI" benchmark datasets and node classification with "ogbn-proteins" dataset):
 
 
@@ -13,7 +15,8 @@ First run "huri_to_ogb_datatype.py" to load data and build pyg-readable link pro
 
 -----------------
 
-### 2nd Step - Run the python script starting with "run_" followed by specific task name. See parameters for script.
+## 2nd Step
+### Run the python script starting with "run_" followed by specific task name. See parameters for script.
 E.g. default embedding generation for rdf2vec KGE method and model evaluation for GCN-based link prediction over the HURI dataset can be done with 
 command "python3 run_link_prediction.py --type DL --model GCN --compute_embedding --embedding rdf2vec"
 
