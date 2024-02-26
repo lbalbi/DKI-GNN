@@ -21,7 +21,7 @@ def read_go_(file):
     for (i,j,k) in G:
         if "GO_" in i and "GO_" in k:
             lista.append([str(i).replace("http://purl.obolibrary.org/obo/GO_","GO:"),str(k).replace("http://purl.obolibrary.org/obo/GO_","GO:")])
-    df = pd.DataFrame(lista) # 75902 GO terms
+    df = pd.DataFrame(lista)
     return df
 
 def get_annotations_(prot_list,correspondence, a_dict):
@@ -154,7 +154,6 @@ def main_func():
     nodes = pd.read_csv("nodeidx2proteinid.csv", index_col=False)
     edge = pd.read_csv("edge_.csv", header=None, index_col=False)
     labels = pd.read_csv("alllabels_.csv", header=None, index_col=False)
-    print(labels)
 
     dict_ = {}
     for i in range(len(edge)):
@@ -193,9 +192,7 @@ def main_func():
     feats.to_csv("node-feat.csv", index=False, header=False)
     zip_file("node-feat.csv")
     train = torch.load("train.pt")
-    print(train)
     train = pd.DataFrame(train["edge"])
-    print(train)
     train.to_csv("edge.csv", index=False, header=False)
     zip_file("edge.csv")
 
@@ -218,90 +215,3 @@ def main_func():
 ##################################################################################################
 # if  building files for performing tests over PPI dataset "huri", run:
 main_func()
-
-
-
-
-
-
-
-
-
-
-# import sklearn.model_selection, os
-
-# def strat_k(edge__, labels):
-#     x = pd.DataFrame(list(edge__.index)).values
-#     labels_ = labels.values
-#     skf = sklearn.model_selection.StratifiedKFold(n_splits=5, shuffle=True, random_state=0)
-#     for i, (train_index, test_index) in enumerate(skf.split(x, labels_)):
-#         if i == 1:
-#             train_ = train_index
-#             with open("./test__0.csv", "w") as f1:
-#                 for k in test_index:
-#                     f1.write(str(edge__[0][k]) + "," + str(edge__[1][k])  + "," + str(labels[0][k]))
-#                     f1.write("\n")
-
-#     test_n,test_p = [],[]
-#     test__ = dict()
-#     test = pd.read_csv("./test__0.csv", header=None, index_col=False)
-
-#     for k in range(len(test[0])):
-#         if test[2][k] == 1:
-#             test_p.append([test[0][k],test[1][k]])
-#         elif test[2][k] == 0:
-#             test_n.append([test[0][k],test[1][k]])
-#     test_n = pd.DataFrame(test_n).values
-#     test_p = pd.DataFrame(test_p).values
-#     test__["edge"] = test_p
-#     test__["edge_neg"] = test_n
-#     torch.save(test__, "./test__.pt")
-
-#     ###### FOR CV TRAIN/TEST ######
-#     skf1 = sklearn.model_selection.StratifiedKFold(n_splits=5, shuffle=True, random_state=None)
-#     label_ = []
-#     pairs_ = []
-#     for j in train_:
-#         pairs_.append([edge__[0][j],edge__[1][j],labels[0][j]])
-#         label_.append(labels[0][j])
-#     pairs_ = pd.DataFrame(pairs_)
-#     y = pd.DataFrame(label_).values
-#     x = pd.DataFrame(list(pairs_.index)).values
-
-#     for index, (train_index, test_index) in enumerate(skf1.split(x, y)):
-#         with open("./train__{}.csv".format(index), "w") as f4:
-#             for k in train_index:
-#                 f4.write(str(pairs_[0][k]) + "," + str(pairs_[1][k])  + "," + str(pairs_[2][k]))
-#                 f4.write("\n")
-#         f4.close()
-
-#         with open("./valid__{}.csv".format(index), "w") as f3:
-#             for k in test_index:
-#                 f3.write(str(pairs_[0][k]) + "," + str(pairs_[1][k])  + "," + str(pairs_[2][k]))
-#                 f3.write("\n")
-#         f3.close()
-
-#     for n in range(5):
-#         train = pd.read_csv("./train__{}.csv".format(n), header=None, index_col=False)
-#         train_p, train__ = [], {}
-#         for ml in range(len(train[0])):
-#             if train[2][ml] == 1:
-#                 train_p.append([train[0][ml],train[1][ml]])
-#         train_p = pd.DataFrame(train_p).values
-#         train__["edge"]= train_p
-#         torch.save(train__, "./train__{}.pt".format(n))
-
-#         valid = pd.read_csv("./valid__{}.csv".format(n), header=None, index_col=False)
-#         valid_p,valid_n, valid__ = [],[], {}
-#         for kj in range(len(valid[0])):
-#             if valid[2][kj] == 1:
-#                 valid_p.append([valid[0][kj],valid[1][kj]])
-#             elif valid[2][kj] == 0:
-#                 valid_n.append([valid[0][kj],valid[1][kj]])
-#         valid_n = pd.DataFrame(valid_n).values
-#         valid_p = pd.DataFrame(valid_p).values
-#         valid__["edge"] = valid_p
-#         valid__["edge_neg"] = valid_n
-#         torch.save(valid__, "./valid__{}.pt".format(n))
-
-# strat_k(edge, labels)
