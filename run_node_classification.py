@@ -23,25 +23,25 @@ def make_dataset(path, name_="ogbn-proteins"):
 import subprocess
 def make_embeddings(embedder, annot_type="CC"):
     if embedder == "wang2vec":
-        if annot_type == "ALL": command_to_execute = ["python3", "Embeddings/run_Wang2VecEmbeddings.py","--annotations_file_path","./ogbn_proteins_ALL_annotations.csv"]
-        elif annot_type == "R2":command_to_execute = ["python3", "Embeddings/run_Wang2VecEmbeddings.py","--annotations_file_path","./ogbn_proteins_R2_annotations.csv"]
-        else:command_to_execute = ["python3", "Embeddings/run_Wang2VecEmbeddings.py"]
+        if annot_type == "ALL": command_to_execute = ["python", "Embeddings/run_Wang2VecEmbeddings.py","--annotations_file_path","./ogbn_proteins_ALL_annotations.csv"]
+        elif annot_type == "R2":command_to_execute = ["python", "Embeddings/run_Wang2VecEmbeddings.py","--annotations_file_path","./ogbn_proteins_R2_annotations.csv"]
+        else:command_to_execute = ["python", "Embeddings/run_Wang2VecEmbeddings.py"]
     if embedder == "transe":
-        if annot_type == "ALL": command_to_execute = ["python3", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["TransE"]',"--annotations_file_path","./ogbn_proteins_ALL_annotations.csv"]
-        elif annot_type == "R2":command_to_execute = ["python3", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["TransE"]',"--annotations_file_path","./ogbn_proteins_R2_annotations.csv"]
-        else:command_to_execute = ["python3", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["TransE"]']
+        if annot_type == "ALL": command_to_execute = ["python", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["TransE"]',"--annotations_file_path","./ogbn_proteins_ALL_annotations.csv"]
+        elif annot_type == "R2":command_to_execute = ["python", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["TransE"]',"--annotations_file_path","./ogbn_proteins_R2_annotations.csv"]
+        else:command_to_execute = ["python", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["TransE"]']
     if embedder == "complex":
-        if annot_type == "ALL": command_to_execute = ["python3", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["ComplEx"]',"--annotations_file_path","./ogbn_proteins_ALL_annotations.csv"]
-        if annot_type == "R2": command_to_execute = ["python3", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["ComplEx"]',"--annotations_file_path","./ogbn_proteins_R2_annotations.csv"]
-        else: command_to_execute = ["python3", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["ComplEx"]']
+        if annot_type == "ALL": command_to_execute = ["python", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["ComplEx"]',"--annotations_file_path","./ogbn_proteins_ALL_annotations.csv"]
+        if annot_type == "R2": command_to_execute = ["python", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["ComplEx"]',"--annotations_file_path","./ogbn_proteins_R2_annotations.csv"]
+        else: command_to_execute = ["python", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["ComplEx"]']
     if embedder == "distmult":
-        if annot_type == "ALL": command_to_execute = ["python3", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["distMult"]',"--annotations_file_path","./ogbn_proteins_ALL_annotations.csv"]
-        elif annot_type == "R2": command_to_execute = ["python3", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["distMult"]',"--annotations_file_path","./ogbn_proteins_R2_annotations.csv"]
-        else: command_to_execute = ["python3", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["distMult"]']
+        if annot_type == "ALL": command_to_execute = ["python", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["distMult"]',"--annotations_file_path","./ogbn_proteins_ALL_annotations.csv"]
+        elif annot_type == "R2": command_to_execute = ["python", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["distMult"]',"--annotations_file_path","./ogbn_proteins_R2_annotations.csv"]
+        else: command_to_execute = ["python", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["distMult"]']
     if embedder == "rdf2vec":
-        if annot_type == "ALL": command_to_execute = ["python3", "Embeddings/run_RDF2VecEmbeddings.py","--annotations_file_path","./ogbn_proteins_ALL_annotations.csv"]
-        elif annot_type == "R2": command_to_execute = ["python3", "Embeddings/run_RDF2VecEmbeddings.py","--annotations_file_path","./ogbn_proteins_R2_annotations.csv"]
-        else: command_to_execute = ["python3", "Embeddings/run_RDF2VecEmbeddings.py"]
+        if annot_type == "ALL": command_to_execute = ["python", "Embeddings/run_RDF2VecEmbeddings.py","--annotations_file_path","./ogbn_proteins_ALL_annotations.csv"]
+        elif annot_type == "R2": command_to_execute = ["python", "Embeddings/run_RDF2VecEmbeddings.py","--annotations_file_path","./ogbn_proteins_R2_annotations.csv"]
+        else: command_to_execute = ["python", "Embeddings/run_RDF2VecEmbeddings.py"]
 
     subprocess.run(command_to_execute)
     print("{} embeddings done!".format(embedder)) # save embeddings in file
