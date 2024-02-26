@@ -57,20 +57,20 @@ def writePredictions(predictions, y, path_output):
 import subprocess
 def make_embeddings(embedder, dataset):
     if embedder == "wang2vec":
-        if dataset == "ogbl-ppa": command_to_execute = ["python3", "Embeddings/run_Wang2VecEmbeddings.py", "--annotations_file_path","./ogbl_ppa_annotations.csv","--correspondence_file_path","./ogbl_ppa_nodeidx2proteinid.csv"]
-        else: command_to_execute = ["python3", "Embeddings/run_Wang2VecEmbeddings.py", "--annotations_file_path", "./annotations.csv","--correspondence_file_path","./nodeidx2proteinid.csv"]
+        if dataset == "ogbl-ppa": command_to_execute = ["python", "Embeddings/run_Wang2VecEmbeddings.py", "--annotations_file_path","./ogbl_ppa_annotations.csv","--correspondence_file_path","./ogbl_ppa_nodeidx2proteinid.csv"]
+        else: command_to_execute = ["python", "Embeddings/run_Wang2VecEmbeddings.py", "--annotations_file_path", "./annotations.csv","--correspondence_file_path","./nodeidx2proteinid.csv"]
     if embedder == "transe":
-        if dataset == "ogbl-ppa": command_to_execute = ["python3", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["TransE"]', "--annotations_file_path","./ogbl_ppa_annotations.csv","--correspondence_file_path","./ogbl_ppa_nodeidx2proteinid.csv"]
-        else: command_to_execute = ["python3", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["TransE"]', "--annotations_file_path","./annotations.csv","--correspondence_file_path","./nodeidx2proteinid.csv"]
+        if dataset == "ogbl-ppa": command_to_execute = ["python", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["TransE"]', "--annotations_file_path","./ogbl_ppa_annotations.csv","--correspondence_file_path","./ogbl_ppa_nodeidx2proteinid.csv"]
+        else: command_to_execute = ["python", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["TransE"]', "--annotations_file_path","./annotations.csv","--correspondence_file_path","./nodeidx2proteinid.csv"]
     if embedder == "complex":
-        if dataset == "ogbl-ppa": command_to_execute = ["python3", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["ComplEx"]', "--annotations_file_path","./ogbl_ppa_annotations.csv","--correspondence_file_path","./ogbl_ppa_nodeidx2proteinid.csv"]
-        else: command_to_execute = ["python3", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["ComplEx"]', "--annotations_file_path","./annotations.csv","--correspondence_file_path","./nodeidx2proteinid.csv"]
+        if dataset == "ogbl-ppa": command_to_execute = ["python", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["ComplEx"]', "--annotations_file_path","./ogbl_ppa_annotations.csv","--correspondence_file_path","./ogbl_ppa_nodeidx2proteinid.csv"]
+        else: command_to_execute = ["python", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["ComplEx"]', "--annotations_file_path","./annotations.csv","--correspondence_file_path","./nodeidx2proteinid.csv"]
     if embedder == "distmult":
-        if dataset == "ogbl-ppa": command_to_execute = ["python3", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["distMult"]', "--annotations_file_path", "./ogbl_ppa_annotations.csv","--correspondence_file_path","./ogbl_ppa_nodeidx2proteinid.csv"]
-        else: command_to_execute = ["python3", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["distMult"]', "--annotations_file_path","./annotations.csv","--correspondence_file_path","./nodeidx2proteinid.csv"]
+        if dataset == "ogbl-ppa": command_to_execute = ["python", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["distMult"]', "--annotations_file_path", "./ogbl_ppa_annotations.csv","--correspondence_file_path","./ogbl_ppa_nodeidx2proteinid.csv"]
+        else: command_to_execute = ["python", "Embeddings/run_OpenKEembeddings.py", "--embeddings", '["distMult"]', "--annotations_file_path","./annotations.csv","--correspondence_file_path","./nodeidx2proteinid.csv"]
     if embedder == "rdf2vec":
-        if dataset == "ogbl-ppa": command_to_execute = ["python3", "Embeddings/run_RDF2VecEmbeddings.py", "--annotations_file_path","./ogbl_ppa_annotations.csv" ,"--correspondence_file_path","./ogbl_ppa_nodeidx2proteinid.csv"]
-        else: command_to_execute = ["python3", "Embeddings/run_RDF2VecEmbeddings.py", "--annotations_file_path","./annotations.csv","--correspondence_file_path","./nodeidx2proteinid.csv"]
+        if dataset == "ogbl-ppa": command_to_execute = ["python", "Embeddings/run_RDF2VecEmbeddings.py", "--annotations_file_path","./ogbl_ppa_annotations.csv" ,"--correspondence_file_path","./ogbl_ppa_nodeidx2proteinid.csv"]
+        else: command_to_execute = ["python", "Embeddings/run_RDF2VecEmbeddings.py", "--annotations_file_path","./annotations.csv","--correspondence_file_path","./nodeidx2proteinid.csv"]
 
     subprocess.run(command_to_execute)
 
@@ -119,11 +119,7 @@ def get_embeddings(path_, dataset, embedder="", partitions=None, x_=None):
         x = torch.load(path_ + "/embedding_{}.pt".format(embedder))
     elif embedder == "" and x_ != None:
         x = x_
-    try:    
-        print(x)
-        print(len(x))
-        print(len(x[0]))
-    except:pass
+
     if partitions != None:
         pos_train_preds, pos_valid_preds, pos_test_preds = [],[],[]
         train_edge = partitions['train']['edge']
@@ -241,7 +237,7 @@ def run_ML(X_train, y_train, X_valid, y_valid, X_test, y_test, ML_model, path_ou
 
             X_train_ = torch.cat([X_train, X_valid], dim=0)
             y_train_ = torch.cat([y_train, y_valid], dim=0)
-            print(X_train_)
+
             model = RandomForestClassifier(max_depth=best_depth, n_estimators=best_estimators)
             model.fit(X_train_, y_train_)
             predictions_test = model.predict(X_test)
@@ -255,19 +251,19 @@ def run_ML(X_train, y_train, X_valid, y_valid, X_test, y_test, ML_model, path_ou
 
 def run_neural(dl_model, embeddings = None, data_path="./dataset", combined=False):
     if dl_model == "GCN":
-        if combined==True: command_to_execute = ["python3", "gnn_lp.py", "--K", "{}".format(embeddings), "--runs", "5", "--combine"]
+        if combined==True: command_to_execute = ["python", "gnn_lp.py", "--K", "{}".format(embeddings), "--runs", "5", "--combine"]
         else: command_to_execute = ["python3", "gnn_lp.py", "--K", "{}".format(embeddings), "--runs", "5", "--dataset","{}".format(data_path)]
     elif dl_model == "GraphSAGE":
-        if combined==True: command_to_execute = ["python3", "gnn_lp.py", "--use_sage", "--K", "{}".format(embeddings), "--runs", "5", "--combine"]
+        if combined==True: command_to_execute = ["python", "gnn_lp.py", "--use_sage", "--K", "{}".format(embeddings), "--runs", "5", "--combine"]
         else: command_to_execute = ["python3", "gnn_lp.py", "--use_sage", "--K", "{}".format(embeddings), "--runs", "5", "--dataset","{}".format(data_path)]
     elif dl_model == "NGNN_GCN":
-        command_to_execute = ["python3","/ngnn/main.py","--device","0","--root","{}".format(data_path),"--ngnn_type","input","--K1","{}".format(embeddings),"--epochs","80","--dropout","0.2","--num_layers","3","--lr","0.001","--batch_size","49152","--runs","10"]
+        command_to_execute = ["python","/ngnn/main.py","--device","0","--root","{}".format(data_path),"--ngnn_type","input","--K1","{}".format(embeddings),"--epochs","80","--dropout","0.2","--num_layers","3","--lr","0.001","--batch_size","49152","--runs","10"]
     elif dl_model == "NGNN_GraphSAGE":
-        command_to_execute = ["python3","ngnn/main.py","--device","0","--root","{}".format(data_path),"--ngnn_type","input","--K1","{}".format(embeddings),"--use_sage","--epochs", "80","--dropout","0.2","--num_layers","3","--lr","0.001","--batch_size","49152","--runs","10"]
+        command_to_execute = ["python","ngnn/main.py","--device","0","--root","{}".format(data_path),"--ngnn_type","input","--K1","{}".format(embeddings),"--use_sage","--epochs", "80","--dropout","0.2","--num_layers","3","--lr","0.001","--batch_size","49152","--runs","10"]
     elif dl_model == "AGDN":
-        command_to_execute = ["python3","./Adaptive-Graph-Diffusion-Networks-master/ogbl_no_sampling/src/main.py","--embK","{}".format(embeddings),"--epochs","40","--model","agdn","--eval-steps","1","--log-steps","1","--K","2","--hop-norm","--transition-matrix","gat","--negative-sampler","global","--eval-metric","hits","--lr","0.01","--n-layers","2","--n-hidden","64","--n-heads","1","--batch-size","65536","--dropout","0.","--attn-drop","0.2","--input-drop","0.","--diffusion-drop","0.","--use-emb","--no-node-feat","--loss-func","CE","--bn"]
+        command_to_execute = ["python","/Adaptive-Graph-Diffusion-Networks-master/ogbl_no_sampling/src/main.py","--embK","{}".format(embeddings),"--epochs","40","--model","agdn","--eval-steps","1","--log-steps","1","--K","2","--hop-norm","--transition-matrix","gat","--negative-sampler","global","--eval-metric","hits","--lr","0.01","--n-layers","2","--n-hidden","64","--n-heads","1","--batch-size","65536","--dropout","0.","--attn-drop","0.2","--input-drop","0.","--diffusion-drop","0.","--use-emb","--no-node-feat","--loss-func","CE","--bn"]
     elif dl_model == "NGNN_SEAL":
-        command_to_execute = ["python3","ngnn-seal/main.py","--data_path","{}".format(data_path), "--K","{}".format(embeddings),"--ngnn_type","input","--hidden_channels","48","--epochs","50","--lr","0.00015","--batch_size","128","--num_workers","48","--train_percent","5","--val_percent","8","--use_feature","--dynamic_train","--dynamic_val","--dynamic_test","--runs","2"]
+        command_to_execute = ["python","ngnn-seal/main.py","--data_path","{}".format(data_path), "--K","{}".format(embeddings),"--ngnn_type","input","--hidden_channels","48","--epochs","50","--lr","0.00015","--batch_size","128","--num_workers","48","--train_percent","5","--val_percent","8","--use_feature","--dynamic_train","--dynamic_val","--dynamic_test","--runs","2"]
     subprocess.run(command_to_execute)
     print("{} model was run!".format(dl_model))
 
@@ -299,13 +295,9 @@ def main():
             print("randomizing features : ")
             x = torch.Tensor(np.random.rand(len(x),50))
             torch.save(x, args.data_path + "/embedding_random.pt")
-            print(x)
-            print(len(x), len(x[0]))
             x_ = get_embeddings(path_ = args.data_path, dataset = args.dataset, embedder = args.embedding, x_ = x)
         elif args.randomize == True and Path(args.data_path + "/embedding_random.pt").exists() == True:
             x = torch.load(args.data_path + "/embedding_random.pt")
-            print(x)
-            print(len(x), len(x[0]))
             x_ = get_embeddings(path_ = args.data_path, dataset = args.dataset, embedder = args.embedding, x_ = x)
         elif args.randomize == False and args.embedding != "": x_ = get_embeddings(path_ = args.data_path, dataset = args.dataset, embedder = args.embedding)
         
@@ -338,13 +330,9 @@ def main():
             print("randomizing features : ")
             x = torch.Tensor(np.random.rand(len(x),50))
             torch.save(x, args.data_path + "/embedding_random.pt")
-            print(x)
-            print(len(x), len(x[0]))
             x_train, x_valid, x_test, y_train, y_valid, y_test = get_embeddings(path_ = args.data_path, dataset = args.dataset, embedder = args.embedding, partitions=split_edge, x_=x)
         elif args.randomize == True and Path(args.data_path + "/embedding_random.pt").exists() == True:
             x = torch.load(args.data_path + "/embedding_random.pt")
-            print(x)
-            print(len(x), len(x[0]))
             x_train, x_valid, x_test, y_train, y_valid, y_test = get_embeddings(path_ = args.data_path, dataset = args.dataset, embedder = args.embedding, partitions=split_edge, x_=x)
 
 
