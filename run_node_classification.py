@@ -94,26 +94,26 @@ def get_embeddings(path_, annot_type="CC", embedder="", x_=None):
 
 def run_neural(dl_model, embeddings = None, data_path="./dataset"):
     if dl_model == "GCN":
-        command_to_execute = ["python3", "Node_Classification/gnn_aaai.py", "--K1", "{}".format(embeddings), "--runs", "5"]
+        command_to_execute = ["python", "Node_Classification/gnn_nc.py", "--K1", "{}".format(embeddings), "--runs", "5"]
     elif dl_model == "GraphSAGE":
-        command_to_execute = ["python3", "Node_Classification/gnn_aaai.py", "--use_sage", "--K1", "{}".format(embeddings), "--runs", "5"]
+        command_to_execute = ["python", "Node_Classification/gnn_nc.py", "--use_sage", "--K1", "{}".format(embeddings), "--runs", "5"]
     elif dl_model == "NGNN_GCN":
-        command_to_execute = ["python3", "Node_Classification/gnn_aaai.py", "--ngnn_gcn", "--K1", "{}".format(embeddings), "--runs", "5"]
+        command_to_execute = ["python", "Node_Classification/gnn_nc.py", "--ngnn_gcn", "--K1", "{}".format(embeddings), "--runs", "5"]
     elif dl_model == "NGNN_GraphSAGE":
-        command_to_execute = ["python3", "Node_Classification/gnn_aaai.py", "--ngnn_sage", "--K1", "{}".format(embeddings), "--runs", "5"]
+        command_to_execute = ["python", "Node_Classification/gnn_nc.py", "--ngnn_sage", "--K1", "{}".format(embeddings), "--runs", "5"]
 
     elif dl_model == "MWE_DGCN":
-        command_to_execute = ["python3", "GAT/main_proteins_full_dgl.py", "--model", "MWE-DGCN", "--K1", "{}".format(embeddings)]
+        command_to_execute = ["python", "GAT/main_proteins_full_dgl.py", "--model", "MWE-DGCN", "--K1", "{}".format(embeddings)]
     elif dl_model == "GAT":
-        command_to_execute = ["python3", "GAT/gat.py", "--K1", "{}".format(embeddings)]
+        command_to_execute = ["python", "GAT/gat.py", "--K1", "{}".format(embeddings)]
     elif dl_model == "AGDN":
-        command_to_execute = ["python3", "AGDN/main.py", "--model", "agdn", "--K1", "{}".format(embeddings),
+        command_to_execute = ["python", "AGDN/main.py", "--model", "agdn", "--K1", "{}".format(embeddings),
                               "--sample-type", "random_cluster", "--train-partition-num", "6", "--eval-partition-num", "2", "--eval-times", "1",
                               "--lr", "0.01", "--advanced-optimizer", "--n-epochs", "2000", "--n-heads", "5", "--n-layers", "5",
                               "--weight-style", "HC", "--dropout", "0.0", "--n-hidden", "128", "--input-drop", "0.1", "--attn-drop", "0.",
                               "--hop-attn-drop", "0.", "--edge-drop", "0.1", "--norm", "none", "--K", "2"]
     elif dl_model == "DeeperGCN":
-        command_to_execute = ["python3", "deep_gcns_torch-master/examples/ogb/ogbn_proteins/main.py", 
+        command_to_execute = ["python", "deep_gcns_torch-master/examples/ogb/ogbn_proteins/main.py", 
                               "--use_gpu","--cluster_number", "10", "--valid_cluster_number", "5", "--aggr", "add", "--block", "plain", 
                               "--conv", "gen", "--gcn_aggr", "max", "--num_layers", "3", "--mlp_layers", "2", "--norm", "layer", "--hidden_channels", "64",
                               "--epochs", "200", "--lr", "0.001", "--dropout", "0.0", "--num_evals", "1", "--nf_path", "{}".format(embeddings)]
@@ -162,6 +162,6 @@ if __name__ == "__main__":
 
 
 #################################
-# python3 run_node_classification.py --model GCN --compute_embedding --embedding rdf2vec
-# python3 run_node_classification.py --model GCN --compute_embedding --use_ppi --embedding wang2vec
-# python3 run_node_classification.py --model NGNN_GCN --embedding --use_ppi
+# python run_node_classification.py --model GCN --compute_embedding --embedding rdf2vec
+# python run_node_classification.py --model GCN --compute_embedding --use_ppi --embedding wang2vec
+# python run_node_classification.py --model NGNN_GCN --embedding --use_ppi
