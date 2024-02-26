@@ -1,3 +1,8 @@
+# Source code from:
+https://github.com/wlin12/wang2vec/
+
+
+
 # wang2vec
 Extension of the original word2vec (https://code.google.com/p/word2vec/) using different architectures
 
