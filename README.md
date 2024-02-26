@@ -1,11 +1,11 @@
 # -- DKI Domain Knowledge Injected GNN --
-
 --------------------
 
 The DKI approach has been tested over two popular prediction tasks:
  - link prediction with "ogbl-ppa" and "HuRI" benchmark datasets;
  - node classification with "ogbn-proteins" dataset;
 
+--------------------
 
 ## INSTRUCTIONS:
 ## 1st Step
