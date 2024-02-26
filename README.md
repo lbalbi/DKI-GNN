@@ -18,3 +18,11 @@ For model testing with different parameters than the default, run the desired ne
 
 Ablation studies were performed with an MLP. For reproduction purposes these were included with the main code: For Node Classification, 
 see the "mlp_ablation.py" script inside the corresponding folder. For Link Prediction, it can be run from the run_link_prediction.py with parameters "--type ML" and "--model MLP".
+
+## INSTALLATION REQUIREMENTS:
+- OGB>=1.1.2
+- Numpy>=1.16.0
+- pandas>=0.24.0
+- PyTorch>=1.8+cu101
+- torch-geometric>=2.0.2+cu101
+- tqdm==4.59.0
