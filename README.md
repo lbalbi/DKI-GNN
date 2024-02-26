@@ -8,6 +8,7 @@ The DKI approach has been tested over two popular prediction tasks:
 --------------------
 
 ## INSTRUCTIONS:
+
 ## 1st Step
 ### For model evaluation over the "ogbn-proteins" or "ogbl-ppa" tasks' datasets, the GO and GO annotations sets need to be downloaded and put in the main folder "DKI-GNN" prior to running any script. 
 They can be downloaded at http://release.geneontology.org/2020-06-01/ontology/index.html and http://release.geneontology.org/2020-06-01/annotations/goa , respectively. 
@@ -28,6 +29,8 @@ For model testing with different parameters than the default, run the desired ne
 
 Ablation studies were performed with an MLP. For reproduction purposes these were included with the main code: For Node Classification, 
 see the "mlp_ablation.py" script inside the corresponding folder. For Link Prediction, it can be run from the run_link_prediction.py with parameters "--type ML" and "--model MLP".
+
+--------------------
 
 ## INSTALLATION REQUIREMENTS:
 - OGB>=1.1.2
