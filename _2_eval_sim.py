@@ -26,7 +26,7 @@ def rank_results(test_file,labels_file,output=None):
                 label.append(0)
     results['label'] = pandas.DataFrame(label)
     results['rank'] = results['sim'].rank(method = "min")
-    print(results)
+
     if output != None:
         results.to_csv(output,index=False)
     return _overall_metrics(results)
@@ -77,7 +77,6 @@ def compute_similarity(embeddings_file, edges):
     
     if type(edges) == pandas.DataFrame:
         for index, row in edges.iterrows():
-            #print(row[0],row[1])
             emb1 = numpy.array(dict_embeddings[row[0]])
             emb1 = emb1.reshape(1, len(emb1))
             emb2 = numpy.array(dict_embeddings[row[1]])
@@ -101,9 +100,6 @@ def compute_similarity(embeddings_file, edges):
 
 def compute_metrics_el_embeddings_v2(ents, results, dict_SS):
     pairs_ents, list_labels = results.loc[:,["Ent1","Ent2"]].values, results["label"].values
-
-    print(pairs_ents)
-    exit()
 
     top1, top10,top100,mean_rank = 0,0,0,0
     ranks = {}
