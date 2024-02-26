@@ -1,3 +1,4 @@
+# NGNN + SEAL
 # Source code from:
 https://github.com/dmlc/dgl/tree/master/examples/pytorch/ogb/ngnn_seal/
 
