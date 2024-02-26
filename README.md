@@ -1,4 +1,4 @@
--- DKI Domain Knowledge Injected GNN --
+# -- DKI Domain Knowledge Injected GNN --
 
 To perform testing of the DKI approach over one of the tasks avaliable (link prediction with the "ogbl-ppa" and "HuRI" benchmark datasets and node classification with "ogbn-proteins" dataset):
 
